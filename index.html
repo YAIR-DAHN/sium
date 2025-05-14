@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>הזמנה לסיום מסכת ברכות</title>
+    <title>הזמנה להילולת רבי שמעון בר יוחאי</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&family=Suez+One&display=swap');
@@ -119,25 +119,16 @@
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
     <div class="container mx-auto bg-white rounded-lg shadow-xl overflow-hidden golden-frame">
-        <!-- תוכן ההזמנה נשאר ללא שינוי -->
         <div class="p-8 text-center">
             <img src="./img/logo2.png" alt="לוגו" class="logo mb-6">
             
-            <h1 class="text-4xl mb-6">הזמנת כבוד</h1>
-            
-            <p class="mb-6 text-lg">
-                בגילה וברינה באנו בזה להזמין את משפחות הלומדים<br>
-                בבית המדרש "אהל אברהמי" ועמם את תומכי התורה
-            </p>
-            
-            <div class="decorated-title text-3xl mb-6 font-bold">
-                למעמד סיום מסכת ברכות
-            </div>
+            <h1 class="text-4xl mb-6">הזמנת כבוד להילולת רבי שמעון בר יוחאי</h1>
             
             <div class="event-details p-6 mb-6">
-                <p class="mb-4">אשר יתקיים אי"ה ברוב פאר והדר לכבודה של תורה</p>
-                <p class="font-bold mb-2">ביום ראשון כ"ח באב תשפ"ד (1.9.2024) בשעה 20:00</p>
-                <p class="font-bold">באולם "אחיעזר" רח' יהודה הנשיא 32 אלעד</p>
+                <p class="mb-4">אשר תתקיים אי"ה ברוב פאר והדר לכבודו של רבי שמעון בר יוחאי</p>
+                <p class="font-bold mb-2">בליל ל"ג בעומר אור לי"ח אייר תשפ"ה (15.5.2025) בשעה 19:50 אחרי תפילת ערבית</p>
+                <p class="font-bold">בבית הכנסת "בית אל" רחוב העירית 6, הרצליה</p>
+                <p class="text-lg">בהילולה תהיה סעודת מצווה, מקום מיוחד לנשים ושקיות הפתעה לילדים</p>
             </div>
             
             <p class="mb-2">האירוע יתקיים בעוד</p>
@@ -159,46 +150,9 @@
         </div>
     </div>
 
-    <!-- Modal for RSVP -->
-    <div id="rsvpModal" class="modal">
-        <div class="modal-content rounded-lg">
-            <span class="close">&times;</span>
-            <h2 class="text-2xl mb-4 text-center">אישור הגעה</h2>
-            <form id="rsvpForm" class="space-y-4">
-                <div>
-                    <label for="firstName" class="block mb-1">שם מלא:</label>
-                    <input type="text" id="firstName" name="firstName" required class="w-full p-2 border rounded">
-                </div>
-                <div>
-                    <label for="menCount" class="block mb-1">מספר משתתפים גברים:</label>
-                    <input type="number" id="menCount" name="menCount" min="0" value="0" class="w-full p-2 border rounded">
-                </div>
-                <div>
-                    <label for="womenCount" class="block mb-1">מספר משתתפים נשים:</label>
-                    <input type="number" id="womenCount" name="womenCount" min="0" value="0" class="w-full p-2 border rounded">
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn-rsvp px-6 py-2 rounded-full text-lg font-bold">שלח אישור</button>
-                </div>
-                <div id="loader" class="loader"></div>
-
-            </form>
-        </div>
-    </div>
-
-    <!-- Thank You Modal -->
-    <div id="thankYouModal" class="modal">
-        <div class="modal-content rounded-lg text-center p-8">
-            <h2 class="text-3xl mb-4 font-bold">תודה רבה על שיתוף הפעולה</h2>
-            <p id="thankYouMessage" class="text-xl mb-6"></p>
-            <img src="./img/logo2.png" alt="תמונת תודה" class="mx-auto mb-6 rounded-full">
-            <button id="closeThankYouBtn" class="btn-rsvp px-6 py-2 rounded-full text-lg font-bold">סגור</button>
-        </div>
-    </div>
-
     <script>
         // Countdown Timer
-        const countDownDate = new Date("Sep 1, 2024 20:00:00").getTime();
+        const countDownDate = new Date("May 15, 2025 19:50:00").getTime();
 
         const x = setInterval(function() {
             const now = new Date().getTime();
@@ -219,75 +173,6 @@
                 document.getElementById("countdown").innerHTML = "האירוע התחיל!";
             }
         }, 1000);
-
-        // Modal functionality
-        const rsvpModal = document.getElementById("rsvpModal");
-        const thankYouModal = document.getElementById("thankYouModal");
-        const rsvpBtn = document.getElementById("rsvpBtn");
-        const closeBtn = document.getElementsByClassName("close")[0];
-        const closeThankYouBtn = document.getElementById("closeThankYouBtn");
-        const form = document.getElementById("rsvpForm");
-        const thankYouMessage = document.getElementById("thankYouMessage");
-
-        rsvpBtn.onclick = function() {
-            rsvpModal.style.display = "block";
-        }
-
-        closeBtn.onclick = function() {
-            rsvpModal.style.display = "none";
-        }
-
-        closeThankYouBtn.onclick = function() {
-            thankYouModal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == rsvpModal) {
-                rsvpModal.style.display = "none";
-            }
-            if (event.target == thankYouModal) {
-                thankYouModal.style.display = "none";
-            }
-        }
-
-        form.onsubmit = async function(e) {
-        e.preventDefault();
-        const name = document.getElementById('firstName').value;
-        const menParticipants = document.getElementById('menCount').value;
-        const womenParticipants = document.getElementById('womenCount').value;
-
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyj0jNH2dFZwo004PxntLuSMuQas87Rw28po1qd6vmAFrSwebOJ1heJ3pwet_dr8p2bLg/exec';
-
-        // הצג את אנימציית הטעינה
-        document.getElementById('loader').style.display = 'block';
-        // הסתר את כפתור השליחה
-        document.querySelector('button[type="submit"]').style.display = 'none';
-
-        fetch(scriptURL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, menParticipants, womenParticipants }),
-        })
-        .then(response => {
-            const totalParticipants = parseInt(menParticipants) + parseInt(womenParticipants);
-            thankYouMessage.innerHTML = `${name}, מחכים לראותך!<br>אישרת הגעה עבור ${totalParticipants} משתתפים.`;
-            rsvpModal.style.display = "none";
-            thankYouModal.style.display = "block";
-        })
-        .catch(error => {
-            console.error('שגיאה:', error);
-            alert('אירעה שגיאה בעת שליחת הטופס. אנא נסה שוב מאוחר יותר.');
-        })
-        .finally(() => {
-            // הסתר את אנימציית הטעינה
-            document.getElementById('loader').style.display = 'none';
-            // הצג מחדש את כפתור השליחה
-            document.querySelector('button[type="submit"]').style.display = 'block';
-        });
-    }
     </script>
 </body>
 </html>
