@@ -10,100 +10,189 @@
 
         body {
             font-family: 'Heebo', sans-serif;
-            background-color: #fffaf0;
+            background-color: #f0e6d2;
             color: #2c3e50;
         }
 
         .container {
-            max-width: 900px;
-            background: linear-gradient(135deg, #fceabb, #f8b500);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
         }
 
         .golden-frame {
-            border: 10px solid transparent;
+            border: 8px solid transparent;
             border-image: linear-gradient(to bottom right, #d4af37, #f9d77e, #d4af37) 1;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
         }
 
         .logo {
-            max-width: 150px;
+            max-width: 200px;
             margin: 0 auto;
         }
 
-        h1 {
+        h1, .decorated-title {
             font-family: 'Suez One', serif;
             color: #8b4513;
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
 
         .event-details {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 30px;
-            color: #4d4d4d;
         }
 
         #countdown {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: bold;
             color: #d4af37;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
         }
 
         .btn-rsvp {
-            background: linear-gradient(to right, #8b4513, #d4af37);
+            background-color: #8b4513;
             color: white;
-            padding: 10px 25px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 50px;
             transition: all 0.3s ease;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .btn-rsvp:hover {
-            background: linear-gradient(to right, #d4af37, #8b4513);
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background-color: #d4af37;
+            transform: scale(1.05);
         }
 
-        footer {
-            margin-top: 30px;
-            font-size: 1.2rem;
-            color: #4d4d4d;
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .close {
+            color: #aaa;
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #thankYouModal {
+            background-color: #f0e6d2;
+            border: 4px solid #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        #thankYouModal h2 {
+            color: #8b4513;
+        }
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #8b4513;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4">
-    <div class="container mx-auto golden-frame text-center p-8">
-        <img src="./img/logo2.png" alt="לוגו" class="logo mb-6">
-        
-        <h1>הזמנת כבוד להילולת רבי שמעון בר יוחאי</h1>
-        
-        <div class="event-details">
-            <p>אשר תתקיים אי"ה ברוב פאר והדר לכבודו של רבי שמעון בר יוחאי</p>
-            <p class="font-bold">בליל ל"ג בעומר אור לי"ח אייר תשפ"ה (15.5.2025) בשעה 19:50 אחרי תפילת ערבית</p>
-            <p class="font-bold">בבית הכנסת "בית אל" רחוב העירית 6, הרצליה</p>
-            <p>בהילולה תהיה סעודת מצווה, מקום מיוחד לנשים ושקיות הפתעה לילדים</p>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="container mx-auto bg-white rounded-lg shadow-xl overflow-hidden golden-frame">
+        <!-- תוכן ההזמנה -->
+        <div class="p-8 text-center">
+            <img src="./img/logo2.png" alt="לוגו" class="logo mb-6">
+
+            <h1 class="text-4xl mb-6">הזמנת כבוד להילולת רבי שמעון בר יוחאי</h1>
+
+            <p class="mb-6 text-lg">
+                שמחים אנו להזמינכם לחגוג עמנו את
+            </p>
+
+            <div class="decorated-title text-3xl mb-6 font-bold">
+                הילולת רבי שמעון בר יוחאי
+            </div>
+
+            <div class="event-details p-6 mb-6">
+                <p class="mb-4">ההילולה תתקיים בליל <span class="font-bold">ל"ג בעומר</span> – אור לי"ח אייר תשפ"ה</p>
+                <p class="font-bold mb-2">(15.5.2025) • הדלקה בשעה 19:50 לאחר תפילת ערבית</p>
+                <p class="font-bold">בבית הכנסת "בית אל" • רח' העירית 6, הרצליה</p>
+                <p class="mt-4">בהילולה: סעודת מצווה, מתחם מיוחד לנשים, ושקיות הפתעה לילדים</p>
+            </div>
+
+            <p class="mb-2">האירוע יתקיים בעוד</p>
+            <div id="countdown" class="mb-6">
+                <span id="days"></span> ימים
+                <span id="hours"></span> שעות
+                <span id="minutes"></span> דקות
+                <span id="seconds"></span> שניות
+            </div>
+
+            <button id="rsvpBtn" class="btn-rsvp px-6 py-2 rounded-full text-lg font-bold mb-6">
+                אנא אשרו הגעתכם
+            </button>
+
+            <p class="text-lg">
+                בברכת התורה והחסידות
+            </p>
         </div>
-        
-        <p>האירוע יתקיים בעוד</p>
-        <div id="countdown"></div>
-        
-        <button id="rsvpBtn" class="btn-rsvp">
-            אנא אשרו הגעתכם
-        </button>
-        
-        <footer>
-            נשמח לראותכם בהילולה!
-        </footer>
+    </div>
+
+    <!-- Modal for RSVP -->
+    <div id="rsvpModal" class="modal">
+        <div class="modal-content rounded-lg">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl mb-4 text-center">אישור הגעה</h2>
+            <form id="rsvpForm" class="space-y-4">
+                <div>
+                    <label for="firstName" class="block mb-1">שם מלא:</label>
+                    <input type="text" id="firstName" name="firstName" required class="w-full p-2 border rounded">
+                </div>
+                <div>
+                    <label for="menCount" class="block mb-1">מספר משתתפים גברים:</label>
+                    <input type="number" id="menCount" name="menCount" min="0" value="0" class="w-full p-2 border rounded">
+                </div>
+                <div>
+                    <label for="womenCount" class="block mb-1">מספר משתתפים נשים:</label>
+                    <input type="number" id="womenCount" name="womenCount" min="0" value="0" class="w-full p-2 border rounded">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn-rsvp px-6 py-2 rounded-full text-lg font-bold">שלח אישור</button>
+                </div>
+                <div id="loader" class="loader"></div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Thank You Modal -->
+    <div id="thankYouModal" class="modal">
+        <div class="modal-content rounded-lg text-center p-8">
+            <h2 class="text-3xl mb-4 font-bold">תודה רבה על שיתוף הפעולה</h2>
+            <p id="thankYouMessage" class="text-xl mb-6"></p>
+            <img src="./img/logo.png" alt="תמונת תודה" class="mx-auto mb-6 rounded-full">
+            <button id="closeThankYouBtn" class="btn-rsvp px-6 py-2 rounded-full text-lg font-bold">סגור</button>
+        </div>
     </div>
 
     <script>
@@ -119,12 +208,10 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("countdown").innerHTML = `
-                ${days} ימים 
-                ${hours} שעות 
-                ${minutes} דקות 
-                ${seconds} שניות
-            `;
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
 
             if (distance < 0) {
                 clearInterval(x);
@@ -132,11 +219,75 @@
             }
         }, 1000);
 
-        // RSVP Button functionality
+        // Modal functionality
+        const rsvpModal = document.getElementById("rsvpModal");
+        const thankYouModal = document.getElementById("thankYouModal");
         const rsvpBtn = document.getElementById("rsvpBtn");
+        const closeBtn = document.getElementsByClassName("close")[0];
+        const closeThankYouBtn = document.getElementById("closeThankYouBtn");
+        const form = document.getElementById("rsvpForm");
+        const thankYouMessage = document.getElementById("thankYouMessage");
+
         rsvpBtn.onclick = function() {
-            alert("תודה שאישרתם הגעה! מחכים לראותכם בהילולה.");
-        };
+            rsvpModal.style.display = "block";
+        }
+
+        closeBtn.onclick = function() {
+            rsvpModal.style.display = "none";
+        }
+
+        closeThankYouBtn.onclick = function() {
+            thankYouModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == rsvpModal) {
+                rsvpModal.style.display = "none";
+            }
+            if (event.target == thankYouModal) {
+                thankYouModal.style.display = "none";
+            }
+        }
+
+        form.onsubmit = async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('firstName').value;
+            const menParticipants = document.getElementById('menCount').value;
+            const womenParticipants = document.getElementById('womenCount').value;
+
+            // כתובת הסקריפט שלך נשארת כפי שהייתה
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyj0jNH2dFZwo004PxntLuSMuQas87Rw28po1qd6vmAFrSwebOJ1heJ3pwet_dr8p2bLg/exec';
+
+            // הצג את אנימציית הטעינה
+            document.getElementById('loader').style.display = 'block';
+            // הסתר את כפתור השליחה
+            document.querySelector('button[type="submit"]').style.display = 'none';
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, menParticipants, womenParticipants }),
+            })
+            .then(response => {
+                const totalParticipants = parseInt(menParticipants) + parseInt(womenParticipants);
+                thankYouMessage.innerHTML = `${name}, מחכים לראותך!<br>אישרת הגעה עבור ${totalParticipants} משתתפים.`;
+                rsvpModal.style.display = "none";
+                thankYouModal.style.display = "block";
+            })
+            .catch(error => {
+                console.error('שגיאה:', error);
+                alert('אירעה שגיאה בעת שליחת הטופס. אנא נסה שוב מאוחר יותר.');
+            })
+            .finally(() => {
+                // הסתר את אנימציית הטעינה
+                document.getElementById('loader').style.display = 'none';
+                // הצג מחדש את כפתור השליחה
+                document.querySelector('button[type="submit"]').style.display = 'block';
+            });
+        }
     </script>
 </body>
 </html>
