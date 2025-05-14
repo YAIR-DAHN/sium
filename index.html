@@ -10,144 +10,100 @@
 
         body {
             font-family: 'Heebo', sans-serif;
-            background-color: #f0e6d2;
+            background-color: #fffaf0;
             color: #2c3e50;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
+            background: linear-gradient(135deg, #fceabb, #f8b500);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .golden-frame {
-            border: 8px solid transparent;
+            border: 10px solid transparent;
             border-image: linear-gradient(to bottom right, #d4af37, #f9d77e, #d4af37) 1;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
         }
 
         .logo {
-            max-width: 200px;
+            max-width: 150px;
             margin: 0 auto;
         }
 
-        h1, .decorated-title {
+        h1 {
             font-family: 'Suez One', serif;
             color: #8b4513;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
 
         .event-details {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            color: #4d4d4d;
         }
 
         #countdown {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
             color: #d4af37;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
         }
 
         .btn-rsvp {
-            background-color: #8b4513;
+            background: linear-gradient(to right, #8b4513, #d4af37);
             color: white;
+            padding: 10px 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
             transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .btn-rsvp:hover {
-            background-color: #d4af37;
-            transform: scale(1.05);
+            background: linear-gradient(to right, #d4af37, #8b4513);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
+        footer {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #4d4d4d;
         }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-        }
-
-        .close {
-            color: #aaa;
-            float: left;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        #thankYouModal {
-            background-color: #f0e6d2;
-            border: 4px solid #d4af37;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-        }
-
-        #thankYouModal h2 {
-            color: #8b4513;
-        }
-        .loader {
-        border: 5px solid #f3f3f3;
-        border-top: 5px solid #8b4513;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        animation: spin 1s linear infinite;
-        margin: 20px auto;
-        display: none;
-    }
-
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
-    <div class="container mx-auto bg-white rounded-lg shadow-xl overflow-hidden golden-frame">
-        <div class="p-8 text-center">
-            <img src="./img/logo2.png" alt="לוגו" class="logo mb-6">
-            
-            <h1 class="text-4xl mb-6">הזמנת כבוד להילולת רבי שמעון בר יוחאי</h1>
-            
-            <div class="event-details p-6 mb-6">
-                <p class="mb-4">אשר תתקיים אי"ה ברוב פאר והדר לכבודו של רבי שמעון בר יוחאי</p>
-                <p class="font-bold mb-2">בליל ל"ג בעומר אור לי"ח אייר תשפ"ה (15.5.2025) בשעה 19:50 אחרי תפילת ערבית</p>
-                <p class="font-bold">בבית הכנסת "בית אל" רחוב העירית 6, הרצליה</p>
-                <p class="text-lg">בהילולה תהיה סעודת מצווה, מקום מיוחד לנשים ושקיות הפתעה לילדים</p>
-            </div>
-            
-            <p class="mb-2">האירוע יתקיים בעוד</p>
-            <div id="countdown" class="mb-6">
-                <span id="days"></span> ימים
-                <span id="hours"></span> שעות
-                <span id="minutes"></span> דקות
-                <span id="seconds"></span> שניות
-            </div>
-            
-            <button id="rsvpBtn" class="btn-rsvp px-6 py-2 rounded-full text-lg font-bold mb-6">
-                אנא אשרו הגעתכם
-            </button>
-            
-            <p class="text-lg">
-                בברכת התורה<br>
-                הרב שמעון עטר והלומדים
-            </p>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="container mx-auto golden-frame text-center p-8">
+        <img src="./img/logo2.png" alt="לוגו" class="logo mb-6">
+        
+        <h1>הזמנת כבוד להילולת רבי שמעון בר יוחאי</h1>
+        
+        <div class="event-details">
+            <p>אשר תתקיים אי"ה ברוב פאר והדר לכבודו של רבי שמעון בר יוחאי</p>
+            <p class="font-bold">בליל ל"ג בעומר אור לי"ח אייר תשפ"ה (15.5.2025) בשעה 19:50 אחרי תפילת ערבית</p>
+            <p class="font-bold">בבית הכנסת "בית אל" רחוב העירית 6, הרצליה</p>
+            <p>בהילולה תהיה סעודת מצווה, מקום מיוחד לנשים ושקיות הפתעה לילדים</p>
         </div>
+        
+        <p>האירוע יתקיים בעוד</p>
+        <div id="countdown"></div>
+        
+        <button id="rsvpBtn" class="btn-rsvp">
+            אנא אשרו הגעתכם
+        </button>
+        
+        <footer>
+            נשמח לראותכם בהילולה!
+        </footer>
     </div>
 
     <script>
@@ -163,16 +119,24 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerHTML = days;
-            document.getElementById("hours").innerHTML = hours;
-            document.getElementById("minutes").innerHTML = minutes;
-            document.getElementById("seconds").innerHTML = seconds;
+            document.getElementById("countdown").innerHTML = `
+                ${days} ימים 
+                ${hours} שעות 
+                ${minutes} דקות 
+                ${seconds} שניות
+            `;
 
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("countdown").innerHTML = "האירוע התחיל!";
             }
         }, 1000);
+
+        // RSVP Button functionality
+        const rsvpBtn = document.getElementById("rsvpBtn");
+        rsvpBtn.onclick = function() {
+            alert("תודה שאישרתם הגעה! מחכים לראותכם בהילולה.");
+        };
     </script>
 </body>
 </html>
